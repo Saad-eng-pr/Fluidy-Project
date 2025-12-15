@@ -27,3 +27,4 @@ L’extension repose sur trois composants principaux :
 - **Page invisible utilisée pour** : accéder au DOM, utiliser MediaRecorder, enregistrer le flux audio / vidéo et renvoie la vidéo finale au service worker.
 
 
+
