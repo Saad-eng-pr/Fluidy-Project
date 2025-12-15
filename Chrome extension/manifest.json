@@ -1,17 +1,17 @@
 {
     "name" : "FLuidy Screen Recorder",
-    "descirption" : "Extension qui permet de recorder l'écran et la caméra de l'utilisateur, ceci est inscrit dans le projet entreprise de Fluidy",
+    "description" : "Extension qui permet de recorder l'écran et la caméra de l'utilisateur, ceci est inscrit dans le projet entreprise de Fluidy",
     "version" : "1",
-    "manifest_version" : "3",
+    "manifest_version" : 3,
     "minimum_chrome_version" : "116",
     "action" : {
         "default_icon" : {
-            "16" : "icons/not-recording.png",
-            "32" : "icons/not-recording.png"
+            "16" : "assets/logo-fluidy.png",
+            "32" : "assets/logo-fluidy.png"
         },
         "default_popup" : "popup.html"
     },
-    "host_permissions": ["https//*/*", "http//*/*"],
+    "host_permissions": ["https://*/*", "http://*/*"],
     "background" : {
         "service_worker" : "service-worker.js"
     },
@@ -20,13 +20,15 @@
         "offscreen",
         "scripting",
         "storage",
-        "desktopCapture",
-        "tabs"
-    ],
-    "web_accessible_ressources" : [
+        "tabs", 
+        "activeTab",
+        "desktopCapture"
+    ],    
+    "web_accessible_resources": [
         {
-            "ressources" : ["camera.html", "camera.js", "video.html", "video.js"],
-            "matches" : ["https://*/*", "http://*/*"]
+            "resources": [ "desktopRecord.html", "desktopRecord.js", "camera.html", "camera.js", "video.html", "video.js" ],
+            "matches": ["<all_urls>"]
         }
-    ] 
+    ]
 }
+
