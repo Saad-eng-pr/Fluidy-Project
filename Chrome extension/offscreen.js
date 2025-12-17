@@ -101,3 +101,4 @@ async function startRecording(streamId) {
     console.log("error", err);
   }
 }
+// ===== AUDIO RECORDING SECTION =====

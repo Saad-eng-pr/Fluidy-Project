@@ -26,7 +26,23 @@
     ],    
     "web_accessible_resources": [
         {
-            "resources": [ "desktopRecord.html", "desktopRecord.js", "camera.html", "camera.js", "video.html", "video.js" ],
+            "resources": [ 
+                "desktopRecord.html", 
+                "desktopRecord.js", 
+                "camera.html", 
+                "camera.js", 
+                "video.html", 
+                "video.js",
+                "audioRecord.html",
+                "audioRecord.js",
+                "audio/core/EventEmitter.js",
+                "audio/core/Transcriber.js",
+                "audio/transcribers/WebSpeechTranscriber.js",
+                "audio/transcribers/TranscriberFactory.js",
+                "audio/storage/StorageManager.js",
+                "audio/storage/UnifiedStorageManager.js",
+                "audio/export/ExportHandler.js"
+            ],
             "matches": ["<all_urls>"]
         }
     ]

@@ -1,23 +1,22 @@
  <style>
     body {
-        width: 350px;
-        height: 300px;
+        width: 400px;
+        min-height: 500px;
         margin: 0;
         padding: 0;
         font-family: Inter, sans-serif;
         border-radius: 16px;
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
     #popup-container {
-        position: absolute;
-        width: 350px;
-        height: 300px;
+        position: relative;
+        width: 400px;
+        min-height: 500px;
         left: 0;
         top: 0;
         box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
-
-        overflow: hidden;
     }
 
     #header-container {
@@ -143,6 +142,244 @@
         font-size: 10.2px;
         margin-top: 10px;
     }
+
+    /* Tab Navigation */
+    .tab-navigation {
+        display: flex;
+        background: #f0f0f0;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .tab-button {
+        flex: 1;
+        padding: 12px 16px;
+        background: transparent;
+        color: #455158;
+        border: none;
+        border-radius: 0;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+
+    .tab-button.active {
+        background: #fff;
+        color: #004068;
+        border-bottom: 3px solid #004068;
+    }
+
+    .tab-button:hover {
+        background: #e8e8e8;
+    }
+
+    .tab-content {
+        display: none;
+        padding: 16px 0;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    /* Audio Recording Styles */
+    #audio-status {
+        text-align: center;
+        padding: 12px;
+        margin: 10px 20px;
+        border-radius: 8px;
+        background: rgba(173, 255, 203, 0.15);
+        border: 1px solid rgba(173, 255, 203, 0.3);
+        color: #004068;
+        font-weight: 500;
+    }
+
+    #audio-status.recording {
+        background: rgba(255, 173, 173, 0.15);
+        border: 1px solid rgba(255, 173, 173, 0.3);
+        animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+    }
+
+    #audio-timer {
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+        color: #004068;
+        margin: 16px 0;
+        font-family: 'Courier New', monospace;
+    }
+
+    #audio-record-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 16px auto;
+        padding: 12px 24px;
+        background: #004068;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        gap: 8px;
+        transition: background 0.3s;
+    }
+
+    #audio-record-btn:hover {
+        background: #005580;
+    }
+
+    #audio-record-btn.recording {
+        background: #d32f2f;
+    }
+
+    #audio-record-btn.recording:hover {
+        background: #b71c1c;
+    }
+
+    #audio-transcript-container {
+        margin: 16px 20px;
+        max-height: 200px;
+        overflow-y: auto;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+    }
+
+    #audio-transcript {
+        color: #333;
+        font-size: 14px;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    .transcript-interim {
+        color: #888;
+        font-style: italic;
+    }
+
+    .audio-actions {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin: 12px 20px;
+        flex-wrap: wrap;
+    }
+
+    .audio-action-btn {
+        padding: 8px 16px;
+        background: #004068;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: background 0.3s;
+    }
+
+    .audio-action-btn:hover {
+        background: #005580;
+    }
+
+    .audio-action-btn:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+    }
+
+    .memos-list {
+        margin: 16px 20px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .memo-item {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .memo-item:hover {
+        background: #f5f5f5;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .memo-title {
+        font-weight: 600;
+        color: #004068;
+        margin-bottom: 4px;
+    }
+
+    .memo-meta {
+        font-size: 11px;
+        color: #888;
+        margin-bottom: 6px;
+    }
+
+    .memo-transcript-preview {
+        font-size: 12px;
+        color: #555;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .memo-actions {
+        display: flex;
+        gap: 6px;
+        margin-top: 8px;
+    }
+
+    .memo-action-btn {
+        padding: 4px 10px;
+        font-size: 11px;
+        background: #004068;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .memo-action-btn:hover {
+        background: #005580;
+    }
+
+    .memo-action-btn.delete {
+        background: #d32f2f;
+    }
+
+    .memo-action-btn.delete:hover {
+        background: #b71c1c;
+    }
+
+    .no-memos {
+        text-align: center;
+        color: #888;
+        padding: 20px;
+        font-style: italic;
+    }
+
+    /* Language selector */
+    #language-selector {
+        margin: 12px 20px;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background: white;
+        color: #004068;
+        font-size: 13px;
+        cursor: pointer;
+    }
+
 </style>
 
 <div id="popup-container">
@@ -159,7 +396,18 @@
         </button>
     </header>
 
-    <div>
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+        <button class="tab-button active" data-tab="video">
+            Video Recording
+        </button>
+        <button class="tab-button" data-tab="audio">
+            Audio Memos
+        </button>
+    </div>
+
+    <!-- Video Tab Content -->
+    <div id="video-tab" class="tab-content active">
         <div class="body-header">
             <img src="assets/record.png" alt="record" class="body-header_icon">
             <h2>Capture Video</h2>
@@ -191,10 +439,39 @@
         <div class="popup-footer">
             <p>Fluidy Capture et enregistrements des videos</p>
         </div>
-
     </div>
 
+    <!-- Audio Tab Content -->
+    <div id="audio-tab" class="tab-content">
+        <div class="body-header">
+            <img src="assets/mic.png" alt="mic" class="body-header_icon">
+            <h2>Audio Recording</h2>
+        </div>
+
+        <div class="buttons-container">
+            <button id="audio-record-btn" class="button-record" style="width: 100%;">
+                <img src="assets/mic.png" alt="mic" class="body-header_icon">
+                Start Audio Recording
+            </button>
+        </div>
+
+        <div style="padding: 0 20px; margin-top: 20px;">
+            <div style="text-align: center; margin-bottom: 12px;">
+                <span style="color: #666; font-size: 14px;">- OR -</span>
+            </div>
+            <label for="audio-file-upload" class="button-record" style="width: calc(100% - 40px); margin: 0 auto; display: flex; cursor: pointer;">
+                <img src="assets/mic.png" alt="upload" class="body-header_icon">
+                Upload Audio File to Transcribe
+            </label>
+            <input type="file" id="audio-file-upload" accept="audio/*" style="display: none;">
+            <div id="audio-upload-status" style="text-align: center; margin-top: 8px; font-size: 12px; color: #666;"></div>
+        </div>
+
+        <div class="popup-footer">
+            <p>Record audio with real-time transcription</p>
+        </div>
+    </div>
 
 </div>
 
-<script src="popup.js"></script>
+<script type="module" src="popup.js"></script>
